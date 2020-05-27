@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+body,
+html {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgb(21, 231, 109), rgb(0, 155, 134));
+}
+
+.centerhtml {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
