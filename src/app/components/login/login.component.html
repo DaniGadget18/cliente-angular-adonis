@@ -5,15 +5,16 @@
                 <div class="card" style="width: 18rem;">
                     <img src="assets/img/login.png" style="width: 50%" class="card-img-top mx-auto" alt="...">
                     <div class="card-body">
-                        <form>
+                        <form (ngSubmit)="login(f)" #f="ngForm">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email">
+                                <input type="email" [(ngModel)]="user.email" class="form-control" id="email" name="email">
                             </div>
                             <div class="form-group">
                                 <label for="password">Contraseña</label>
-                                <input type="password" class="form-control" id="password" name="password">
+                                <input type="password" [(ngModel)]="user.password" class="form-control" id="password" name="password">
                             </div>
+                            <a routerLink="/login/register" class="mb-5">Registrarse</a>
                             <button type="submit" class="btn btn-success btn-block">Entrar</button>
                         </form>
                     </div>

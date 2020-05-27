@@ -1,12 +1,15 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { LoginComponent } from '../components/login/login.component';
+import { RegisterUserComponent } from '../components/register-user/register-user.component';
 
 
 
 const routes: Routes = [
-    { path: '', component: LoginComponent }
-
+    { path: 'login', component: LoginComponent },
+    { path: 'login/register', component: RegisterUserComponent },
+    {path: '**', pathMatch: 'full', redirectTo: '/'},
+    {path: '',   redirectTo: '/', pathMatch: 'full'}
     //{ path: 'path/:routeParam', component: MyComponent },
     //{ path: 'staticPath', component: ... },
     //{ path: '**', component: ... },
@@ -15,7 +18,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
+    imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
-export class FeatureRoutingModule {}
+export class AppRoutingModule {}
