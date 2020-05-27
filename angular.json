@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "cliente-angular-adonis"
+    }
+  },
+  "defaultProject": "cliente-angular-adonis",
+  "cli": {
+    "analytics": "72534e74-becf-4ff1-9771-e0d81652d2b2"
+  }
 }
