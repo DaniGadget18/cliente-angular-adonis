@@ -8,7 +8,7 @@ export class ApiService {
     url:string = "http://localhost:3333/api"
 
     constructor(private petition: HttpClient) {
-
+ 
     }
 
 
