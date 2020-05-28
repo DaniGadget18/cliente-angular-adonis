@@ -2,15 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from "./routes/app.routes";
 
 
+//componentes
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { RouterModule } from '@angular/router';
-import { NavbarComponent } from './navbar/navbar.component';
-import { ApiService } from './services/api.service';
+import { HomeComponent } from './pages/home/home.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
-import { AppRoutingModule } from "./routes/app.routes";
+
+//servicios
+import { ApiService } from './services/api.service';
+
+
 
 @NgModule({
   declarations: [
@@ -18,6 +24,7 @@ import { AppRoutingModule } from "./routes/app.routes";
     LoginComponent,
     NavbarComponent,
     RegisterUserComponent,
+    HomeComponent,
     
   ],
   imports: [
