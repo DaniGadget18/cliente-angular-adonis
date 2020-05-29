@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { map } from 'rxjs/operators';
+import { SongModel } from '../models/song.model';
+import { SongsComponent } from '../pages/songs/songs.component';
 
 @Injectable()
 export class ApiService {
@@ -46,7 +48,9 @@ export class ApiService {
         const data = {
             ...user
         }
+
         return this.petition.post(`${this.url}/usuarios/signup`, data);
+
     }
 
     authenticate(): boolean {
@@ -54,5 +58,26 @@ export class ApiService {
         return this.userToken.length > 2;
 
     }
-    
+
+    //Canciones CRUD
+    guardarCancion(song:SongModel) {
+      const data = {
+          ...song
+      }
+
+      return this.petition.post(`${this.url}/canciones/crear`, data, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }),
+        observe: 'response'
+      })
+      .pipe( map( (resp:any) => {
+        song.id = resp['body']['data'][0]['id'];
+        return song;
+      }));
+
+
+  }
+
 }

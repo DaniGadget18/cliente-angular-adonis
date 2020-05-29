@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from "./routes/app.routes";
+import { AppRoutingModule } from "./app-routing.module";
 
 //componentes
 import { AppComponent } from './app.component';
@@ -14,6 +14,8 @@ import { RegisterUserComponent } from './components/register-user/register-user.
 
 //servicios
 import { ApiService } from './services/api.service';
+import { SongComponent } from './pages/song/song.component';
+import { SongsComponent } from './pages/songs/songs.component';
 
 
 
@@ -24,7 +26,9 @@ import { ApiService } from './services/api.service';
     NavbarComponent,
     RegisterUserComponent,
     HomeComponent,
-    
+    SongComponent,
+    SongsComponent,
+
   ],
   imports: [
     RouterModule,
