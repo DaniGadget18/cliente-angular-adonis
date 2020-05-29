@@ -15,17 +15,41 @@ import { Route ,Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   user = new User();
+  remember = false;
 
   constructor( private apiservice:ApiService,
                private router: Router ) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('email')){
+      this.user.email = localStorage.getItem('email');
+      this.remember = true;
+    }
+
   }
 
-  login(ngform:NgForm) {
-    console.log(this.user);
+  login(form:NgForm) {
+    console.log(form);
+
+    if (form.invalid){
+      console.log("error");
+      return;
+    }
+
     this.apiservice.login(this.user).subscribe( (resp:any) => {
-      return resp;
+
+      if(this.remember){
+        localStorage.setItem('email', this.user.email);
+      }
+
+      if(resp.message != "Ok"){
+        console.log("error");
+        return;
+      }
+      this.router.navigateByUrl('/home');
+    }, (err) => {
+
+      console.log(err);
     });
   }
 

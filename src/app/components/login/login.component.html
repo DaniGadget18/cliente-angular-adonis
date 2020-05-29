@@ -1,25 +1,49 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="centerhtml">
-                <div class="card" style="width: 18rem;">
-                    <img src="assets/img/login.png" style="width: 50%" class="card-img-top mx-auto" alt="...">
-                    <div class="card-body">
-                        <form (ngSubmit)="login(f)" #f="ngForm">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" [(ngModel)]="user.email" class="form-control" id="email" name="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Contraseña</label>
-                                <input type="password" [(ngModel)]="user.password" class="form-control" id="password" name="password">
-                            </div>
-                            <a routerLink="/login/register" class="mb-5">Registrarse</a>
-                            <button type="submit" class="btn btn-success btn-block">Entrar</button>
-                        </form>
+<div class="limiter animated fadeInLeft">
+    <div class="container-login100">
+        <div class="wrap-login100 p-t-50 p-b-90">
+
+            <form (ngSubmit)="login( f )" #f="ngForm" class="login100-form validate-form mx-auto flex-w">
+
+                <span class="login100-form-title p-b-51">
+                    Login
+                </span>
+
+                <span *ngIf="f.submitted && f.controls['email'].errors" class="text-danger animated fadeIn">El correo es obligatorio</span>
+
+                <div class="wrap-input100 m-b-16">
+                    <input class="input100" type="text" name="email" [(ngModel)]="user.email" required email placeholder="Email">
+
+                    <span class="focus-input100"></span>
+                </div>
+
+                <span *ngIf="f.submitted && f.controls['password'].errors" class="text-danger animated fadeIn">Al menos 6 letras</span>
+                <div class="wrap-input100 m-b-16" data-validate="Password is required">
+                    <input class="input100" type="password" name="password" [(ngModel)]="user.password" required minlength="6" placeholder="Password">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="flex-sb-m w-full p-t-3 p-b-24">
+                    <div class="contact100-form-checkbox">
+                        <input [(ngModel)]="remember" class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                        <label class="label-checkbox100" for="ckb1">
+                            Recordar mi usuario
+                        </label>
+                    </div>
+
+                    <div>
+                        <a routerLink="login/register" class="txt1">
+                            ¿No tienes cuenta?
+                        </a>
                     </div>
                 </div>
-            </div>
+
+                <div class="container-login100-form-btn m-t-17">
+                    <button class="login100-form-btn" type="submit">
+                        Ingresar
+                    </button>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>
