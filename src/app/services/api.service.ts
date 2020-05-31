@@ -60,6 +60,18 @@ export class ApiService {
     }
 
     //Canciones CRUD
+
+    getCanciones(){
+      return this.petition.get(`${this.url}/canciones/get`);
+    }
+
+    getPorId(id: string){
+      const data = {
+        id
+      }
+      return this.petition.post(`${this.url}/canciones/getId`, data);
+    }
+
     guardarCancion(song:SongModel) {
       const data = {
           ...song
@@ -76,8 +88,34 @@ export class ApiService {
         song.id = resp['body']['data'][0]['id'];
         return song;
       }));
+  }
 
+  actualizarCancion(song:SongModel){
+    const data = {
+      ...song
+    }
 
+    return this.petition.put(`${this.url}/canciones/editar`, data,{
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }),
+      observe: 'response'
+    });
+  }
+
+  eliminarCancion(id: string){
+    const data = {
+      id
+    }
+    console.log(data)
+    return this.petition.post(`${this.url}/canciones/eliminar`, data,{
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }),
+      observe: 'response'
+    });
   }
 
 }

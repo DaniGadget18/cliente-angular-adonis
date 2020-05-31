@@ -7,7 +7,9 @@
   </div>
 </div>
 
-<table class="table mt-3 animated fadeIn faster">
+<table
+*ngIf="!cargando && songs.length > 0"
+class="table mt-3 animated fadeIn faster">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
@@ -16,29 +18,41 @@
       <th scope="col">Album</th>
       <th scope="col">Fecha</th>
       <th scope="col">Genero</th>
+      <th scope="col">Acciones</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+    <tr *ngFor="let song of songs; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{song.nombre}}</td>
+      <td>{{song.autor}}</td>
+      <td>{{song.album}}</td>
+      <td>{{song.fecha}}</td>
+      <td>{{song.genero}}</td>
+      <td>
+        <button class="btn btn-info mr-1" [routerLink]="['/song', song.id]" routerLinkActive="router-link-active" >
+          <i class="fa fa-pencil"></i>
+        </button>
+        <button (click)="eliminarCancion(song, i)" class="btn btn-danger mr-1"
+         >
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
     </tr>
 
   </tbody>
 </table>
 
-<div class="alert alert-warning text-center mt-3">
+<div *ngIf="!cargando && songs.length == 0"
+  class="alert alert-warning text-center mt-3">
   <h4 class="alert-heading">No hay registros</h4>
   <p>
     <i class="fa fa-exclamation fa-2x mt-1 mb-1"></i>
   </p>
 </div>
 
-<div class="alert alert-info text-center mt-3">
+<div *ngIf="cargando"
+  class="alert alert-info text-center mt-3">
   <h4 class="alert-heading">Cargando</h4>
   <p>
     <i class="fa fa-circle-o-notch fa-spin fa-2x mt-1 mb-1"></i>
