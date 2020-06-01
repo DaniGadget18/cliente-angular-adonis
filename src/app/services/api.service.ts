@@ -4,6 +4,7 @@ import { User } from '../models/user.model';
 import { map } from 'rxjs/operators';
 import { SongModel } from '../models/song.model';
 import { SongsComponent } from '../pages/songs/songs.component';
+import { GameModel } from '../models/game.model';
 
 @Injectable()
 export class ApiService {
@@ -115,6 +116,63 @@ export class ApiService {
         'Authorization': 'Bearer ' + localStorage.getItem('token')
       }),
       observe: 'response'
+    });
+  }
+
+
+  // CRUD juegos
+
+  getGames() {
+    return this.petition.get(`${this.url}/juegos/get`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    });
+  }
+
+  addGame( game:GameModel ){
+    const data = {
+      ...game
+    }
+    return this.petition.post(`${this.url}/juegos/registrar`, data, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    });
+  }
+
+  getGameByID(id:any){
+    return this.petition.get(`${this.url}/juegos/get/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    });
+  }
+
+  updateGame(game:GameModel){
+    const data = {
+      ...game
+    }
+    return this.petition.post(`${this.url}/juegos/editar`, data, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    });
+  }
+
+  deleteGame(id:any) {
+    const data = {
+      id: id
+    }
+    return this.petition.post(`${this.url}/juegos/eliminar`, data, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
     });
   }
 

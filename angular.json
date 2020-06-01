@@ -94,6 +94,7 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.css",
+              "assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css",
               "src/styles.css"
             ],
             "scripts": [

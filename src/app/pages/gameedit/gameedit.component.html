@@ -1,0 +1,72 @@
+<div class="card" style="width: 100%;">
+    <div class="card-body">
+      <h5 class="card-title">Registrar juego</h5>
+      <form (ngSubmit)="updateGame(f)" #f="ngForm">
+        <span *ngIf="f.submitted && f.controls['nombre'].errors"
+                class="text-danger">El nombre es obligatorio</span>
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Nombre</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="nombre" id="nombre"
+             [(ngModel)]="game.nombre" required>
+          </div>
+        </div>
+        <span *ngIf="f.submitted && f.controls['descripcion'].errors"
+                class="text-danger">La descripcion es obligatoria</span>
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Descripción</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="descripcion" id="descripcion" 
+              [(ngModel)]="game.descripcion" required>
+            </div>
+          </div>
+          <span *ngIf="f.submitted && f.controls['fecha_lanzamiento'].errors"
+                class="text-danger">La fecha es obligatoria</span>
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Fecha de lanzamiento</label>
+            <div class="col-sm-6">
+              <input type="date" class="form-control" name="fecha_lanzamiento" id="fecha_lanzamiento"
+               [(ngModel)]="game.fecha_lanzamiento" required>
+            </div>
+          </div>
+          <span *ngIf="f.submitted && f.controls['rate'].errors"
+                class="text-danger">El ranking es obligatorio</span>
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Rate</label>
+            <div class="col-sm-6">
+                <select class="form-control" name="rate" id="rate" [(ngModel)]="game.rate"
+                required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+            </div>
+          </div>
+          <span *ngIf="f.submitted && f.controls['categoria'].errors"
+                class="text-danger">La categoria es obligatoria</span>
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Categoria</label>
+            <div class="col-sm-6">
+                <select class="form-control" name="categoria" id="categoria" [(ngModel)]="game.categoria"
+                required>
+                    <option value="disparos">disparos</option>
+                    <option value="lucha">lucha</option>
+                    <option value="accion">accion</option>
+                    <option value="estrategia">estrategia</option>
+                    <option value="terror">terror</option>
+                  </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <a class="btn btn-danger" routerLink="/games">Regresar</a>
+            </div>
+              <div class="col-6">
+                <button type="submit" class="btn btn-warning pull-right">Actualizar</button>
+              </div>
+          </div>
+      </form>
+    </div>
+  </div>

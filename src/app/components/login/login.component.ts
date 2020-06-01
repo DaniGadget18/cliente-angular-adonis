@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(form:NgForm) {
-    console.log(form);
 
     if (form.invalid){
       console.log("error");
@@ -43,7 +42,7 @@ export class LoginComponent implements OnInit {
       }
 
       if(resp.message != "Ok"){
-        console.log("error");
+        console.log('error');
         return;
       }
       this.router.navigateByUrl('/home');

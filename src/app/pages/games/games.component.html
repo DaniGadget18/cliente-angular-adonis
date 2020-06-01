@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-6">
+      <h2>Lista de juegos</h2>
+    </div>
+    <div class="col-6">
+      <a class="btn btn-primary pull-right" routerLink="/home">Regresar</a>
+    </div>
+  </div>
+    <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Agregar juegos</h5>
+                  <p class="card-text">
+                      <a class="btn btn-success" routerLink="/games/register">Agregar</a>
+                  </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Juegos</h5>
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <i *ngIf="loading" class="fa fa-spinner fa-spin fa-3x fa-fw text-center"></i>
+                    </div>
+                  </div>
+                  <table *ngIf="games.length > 1 && !loading" class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Lanzamiento</th>
+                        <th scope="col">Rate</th>
+                        <th scope="col">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let game of games">
+                        <th scope="row">{{game.id}}</th>
+                        <td>{{game.nombre}}</td>
+                        <td>{{game.descripcion}}</td>
+                        <td>{{game.categoria}}</td>
+                        <td>{{game.fecha_lanzamiento| date}}</td>
+                        <td>{{game.rate}}</td>
+                        <td>
+                          <div class="row">
+                            <div [routerLink]="['/games/edit', game.id]" class="col-5 btn btn-warning">
+                              <i class="fa fa-edit"></i>
+                            </div>
+                            <div (click)="deleteGame(game.id)" class="col-5 btn btn-danger">
+                              <i class="fa fa-close"></i>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div *ngIf="games.length == 0 && !loading" class="alert alert-warning" role="alert">
+                   <b>No hay juegos por el momento</b> 
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
