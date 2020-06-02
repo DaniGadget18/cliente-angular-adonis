@@ -15,14 +15,14 @@ import { GameeditComponent } from '../pages/gameedit/gameedit.component';
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'login/register', component: RegisterUserComponent },
-    { path: 'songs', component: SongsComponent },
-    { path: 'song/:id', component: SongComponent },
-    { path: 'games', component: GamesComponent },
-    { path: 'games/register', component: GameComponent },
-    { path: 'games/edit/:id', component: GameeditComponent },
+    { path: 'songs', component: SongsComponent, canActivate: [AuthGuard] },
+    { path: 'song/:id', component: SongComponent, canActivate: [AuthGuard] },
+    { path: 'games', component: GamesComponent, canActivate: [AuthGuard] },
+    { path: 'games/register', component: GameComponent, canActivate: [AuthGuard] },
+    { path: 'games/edit/:id', component: GameeditComponent, canActivate: [AuthGuard] },
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-    {path: '**', pathMatch: 'full', redirectTo: '/home'},
-    {path: '',   redirectTo: '/home', pathMatch: 'full'}
+    {path: '**', pathMatch: 'full', redirectTo: '/home', canActivate: [AuthGuard]},
+    {path: '',   redirectTo: '/home', pathMatch: 'full', canActivate: [AuthGuard]}
     //{ path: 'path/:routeParam', component: MyComponent },
     //{ path: 'staticPath', component: ... },
     //{ path: '**', component: ... },

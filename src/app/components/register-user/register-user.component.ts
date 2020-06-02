@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { NgForm } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-user',
@@ -11,7 +12,8 @@ import { ApiService } from '../../services/api.service';
 export class RegisterUserComponent implements OnInit {
   user: User;
 
-  constructor(private apiservice: ApiService) {}
+  constructor(private apiservice: ApiService,
+              private router:Router) {}
 
   ngOnInit(): void {
     this.user = new User();
@@ -21,8 +23,7 @@ export class RegisterUserComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    console.log(this.user);
-    console.log(form);
+    
     this.apiservice.registerUser(this.user).subscribe((resp: any) => {
       console.log(resp);
     });

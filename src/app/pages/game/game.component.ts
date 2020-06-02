@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { GameModel } from '../../models/game.model';
 import { ApiService } from '../../services/api.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -13,7 +14,8 @@ export class GameComponent implements OnInit {
 
   game = new GameModel();
 
-  constructor( private apiservice: ApiService ) { }
+  constructor( private apiservice: ApiService,
+               private router:Router ) { }
 
   ngOnInit(): void {
   }
@@ -37,11 +39,12 @@ export class GameComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         });
+        this.router.navigateByUrl('/games');
       }
     }, (error) => {
       Swal.fire({
         icon: 'error',
-        title: 'Ha ocurrido un error con el servicio',
+        title: 'Ha ocurrido un error con el servicio' + error.error.message,
         showConfirmButton: false,
         timer: 1500
       });

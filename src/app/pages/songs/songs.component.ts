@@ -35,7 +35,7 @@ export class SongsComponent implements OnInit {
       showCancelButton:true
     }).then(resp =>{
       if (resp.value) {
-        this.songs.splice(i,1)
+        this.songs.splice(i,1);
         this.apiService.eliminarCancion(song.id).subscribe();
       }
     });

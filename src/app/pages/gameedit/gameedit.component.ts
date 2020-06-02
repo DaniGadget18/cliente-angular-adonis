@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { GameModel } from '../../models/game.model';
 import { NgForm } from '@angular/forms';
@@ -15,7 +15,8 @@ export class GameeditComponent implements OnInit {
   game = new GameModel();
 
 
-  constructor( private route:ActivatedRoute, 
+  constructor( private router:Router,
+               private route:ActivatedRoute, 
                private apiservices: ApiService ) {
 
     this.route.params.subscribe( (params) =>{
@@ -50,6 +51,7 @@ export class GameeditComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         });
+        this.router.navigateByUrl('/games');
       }
     }, (error) => {
       Swal.fire({

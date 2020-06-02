@@ -27,7 +27,7 @@ export class GamesComponent implements OnInit {
   }
 
 
-  deleteGame(id:any) {
+  deleteGame(id:any, i) {
 
 
 
@@ -49,6 +49,7 @@ export class GamesComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           });
+          this.games.splice(i,1);
         }, (error) =>{
           Swal.fire({
             icon: 'error',

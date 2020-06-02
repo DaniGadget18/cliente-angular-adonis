@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { User } from '../../models/user.model';
 import { ApiService } from '../../services/api.service';
 import { Route ,Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.apiservice.login(this.user).subscribe( (resp:any) => {
-
+      console.log(resp);
       if(this.remember){
         localStorage.setItem('email', this.user.email);
       }
@@ -48,7 +49,22 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/home');
     }, (err) => {
 
-      console.log(err);
+      if(err.error.message.passwordField){
+        Swal.fire({
+          icon: 'error',
+          title: 'Contraseña incorrecta',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        return;
+      }
+
+      Swal.fire({
+        icon: 'error',
+        title: err.error.message,
+        showConfirmButton: false,
+        timer: 1500
+      });
     });
   }
 

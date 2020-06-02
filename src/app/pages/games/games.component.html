@@ -27,7 +27,7 @@
                       <i *ngIf="loading" class="fa fa-spinner fa-spin fa-3x fa-fw text-center"></i>
                     </div>
                   </div>
-                  <table *ngIf="games.length > 1 && !loading" class="table table-hover">
+                  <table *ngIf="games.length >= 1 && !loading" class="table table-hover">
                     <thead>
                       <tr>
                         <th scope="col">id</th>
@@ -40,7 +40,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let game of games">
+                      <tr *ngFor="let game of games; let i = index">
                         <th scope="row">{{game.id}}</th>
                         <td>{{game.nombre}}</td>
                         <td>{{game.descripcion}}</td>
@@ -52,7 +52,7 @@
                             <div [routerLink]="['/games/edit', game.id]" class="col-5 btn btn-warning">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <div (click)="deleteGame(game.id)" class="col-5 btn btn-danger">
+                            <div (click)="deleteGame(game.id, i)" class="col-5 btn btn-danger">
                               <i class="fa fa-close"></i>
                             </div>
                           </div>
