@@ -21,6 +21,10 @@ import { GamesComponent } from './pages/games/games.component';
 import { AppRoutingModule } from './routes/app.routes';
 import { GameComponent } from './pages/game/game.component';
 import { GameeditComponent } from './pages/gameedit/gameedit.component';
+import { ReadShopComponent } from './pages/shops/read-shop/read-shop.component';
+import { UpdateShopComponent } from './pages/shops/update-shop/update-shop.component';
+import { CreateShopComponent } from './pages/shops/create-shop/create-shop.component';
+import { DeleteShopComponent } from './pages/shops/delete-shop/delete-shop.component';
 
 
 
@@ -38,6 +42,10 @@ import { GameeditComponent } from './pages/gameedit/gameedit.component';
     GamesComponent,
     GameComponent,
     GameeditComponent,
+    ReadShopComponent,
+    UpdateShopComponent,
+    CreateShopComponent,
+    DeleteShopComponent,
 
   ],
   imports: [

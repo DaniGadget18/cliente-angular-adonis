@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { SongModel } from '../models/song.model';
 import { SongsComponent } from '../pages/songs/songs.component';
 import { GameModel } from '../models/game.model';
+import { ShopModel } from '../models/shop.model';
 
 @Injectable()
 export class ApiService {
@@ -169,6 +170,41 @@ export class ApiService {
       id: id
     }
     return this.petition.post(`${this.url}/juegos/eliminar`, data, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    });
+  }
+
+  //CRUD tiendas
+
+  getShop() {
+    return this.petition.get(`${this.url}/shops`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    });
+  }
+
+  deleteShop(id:any) {
+    const data = {
+      id: id
+    }
+    return this.petition.post(`${this.url}/shops/delete`, data, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    });
+  }
+
+  addShop( shop:ShopModel ){
+    const data = {
+      ...shop
+    }
+    return this.petition.post(`${this.url}/shops/create`, data, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + localStorage.getItem('token')
