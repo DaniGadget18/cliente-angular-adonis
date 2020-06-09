@@ -13,7 +13,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Agregar juegos</h5>
                   <p class="card-text">
-                      <a class="btn btn-success" routerLink="/games/register">Agregar</a>
+                      <a class="btn btn-success" routerLink="/shops/create">Agregar</a>
                   </p>
                 </div>
             </div>
@@ -27,32 +27,32 @@
                       <i *ngIf="loading" class="fa fa-spinner fa-spin fa-3x fa-fw text-center"></i>
                     </div>
                   </div>
-                  <table *ngIf="games.length >= 1 && !loading" class="table table-hover">
+                  <table *ngIf="shops.length >= 1 && !loading" class="table table-hover">
                     <thead>
                       <tr>
                         <th scope="col">id</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Categoria</th>
-                        <th scope="col">Lanzamiento</th>
-                        <th scope="col">Rate</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Creado</th>
+                        <th scope="col">Actualizado</th>
                         <th scope="col">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let game of games; let i = index">
-                        <th scope="row">{{game.id}}</th>
-                        <td>{{game.nombre}}</td>
-                        <td>{{game.descripcion}}</td>
-                        <td>{{game.categoria}}</td>
-                        <td>{{game.fecha_lanzamiento| date}}</td>
-                        <td>{{game.rate}}</td>
+                      <tr *ngFor="let shop of shops; let i = index">
+                        <th scope="row">{{shop.id}}</th>
+                        <td>{{shop.name}}</td>
+                        <td>{{shop.address}}</td>
+                        <td>{{shop.phone}}</td>
+                        <td>{{shop.created_at}}</td>
+                        <td>{{shop.updated_at}}</td>
                         <td>
                           <div class="row">
-                            <div [routerLink]="['/games/edit', game.id]" class="col-5 btn btn-warning">
+                            <div [routerLink]="['/games/edit', shop.id]" class="col-5 btn btn-warning">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <div (click)="deleteGame(game.id, i)" class="col-5 btn btn-danger">
+                            <div (click)="deleteShop(shop.id, i)" class="col-5 btn btn-danger">
                               <i class="fa fa-close"></i>
                             </div>
                           </div>
@@ -60,7 +60,7 @@
                       </tr>
                     </tbody>
                   </table>
-                  <div *ngIf="games.length == 0 && !loading" class="alert alert-warning" role="alert">
+                  <div *ngIf="shops.length == 0 && !loading" class="alert alert-warning" role="alert">
                    <b>No hay juegos por el momento</b>
                   </div>
                 </div>
@@ -68,4 +68,3 @@
         </div>
     </div>
 </div>
-

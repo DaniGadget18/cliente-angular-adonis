@@ -1,39 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../../services/api.service';
 import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-games',
-  templateUrl: './games.component.html',
-  styleUrls: ['./games.component.css']
+  selector: 'app-read-shop',
+  templateUrl: './read-shop.component.html',
+  styleUrls: ['./read-shop.component.css']
 })
-export class GamesComponent implements OnInit {
+export class ReadShopComponent implements OnInit {
 
-  games:any[] = [];
+  shops:any[] = [];
   loading:boolean = true;
 
   constructor( private apiservice: ApiService ) {
 
-    this.apiservice.getGames().subscribe( (resp:any) => {
-      this.games = resp.data;
+    this.apiservice.getShop().subscribe( (resp:any) => {
+      this.shops = resp.data;
       this.loading = false;
-      console.log(this.games);
+      console.log(this.shops);
     });
 
-  }
+   }
 
   ngOnInit(): void {
   }
 
-
-  deleteGame(id:any, i) {
+  deleteShop(id:any, i) {
 
 
 
     Swal.fire({
       title: '¿Estas seguro?',
-      text: "Eliminar el juego con id = " + id,
+      text: "Eliminar el registro con id = " + id,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -42,14 +41,14 @@ export class GamesComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.value) {
-        this.apiservice.deleteGame(id).subscribe( (resp:any) =>{
+        this.apiservice.deleteShop(id).subscribe( (resp:any) =>{
           Swal.fire({
             icon: 'success',
             title: 'Se ha eliminado correctamente',
             showConfirmButton: false,
             timer: 1500
           });
-          this.games.splice(i,1);
+          this.shops.splice(i,1);
         }, (error) =>{
           Swal.fire({
             icon: 'error',
