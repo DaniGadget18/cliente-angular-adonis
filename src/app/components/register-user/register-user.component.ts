@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ErrorHandler } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { NgForm } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register-user',
@@ -25,7 +26,20 @@ export class RegisterUserComponent implements OnInit {
     }
     
     this.apiservice.registerUser(this.user).subscribe((resp: any) => {
-      console.log(resp);
+      
+
+      if (resp.message === "Ok") {
+        this.apiservice.saveToken(resp.data['token']);
+        this.router.navigateByUrl('/home');
+      } else {
+        Swal.fire({
+        icon: 'error',
+        title: resp.message,
+        showConfirmButton: false,
+        timer: 1500
+          });
+      }
+      
     });
   }
 }
